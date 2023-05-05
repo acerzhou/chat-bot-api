@@ -13,11 +13,16 @@
 
 export const lambdaHandler = async (event, context) => {
   try {
+    const body = {
+      id: "123",
+      name: "John Doe",
+      phoneNumber: "0411111111",
+      address: "test address, Melbourne, Vic, 3000",
+    };
+
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        message: "hello world",
-      }),
+      body: JSON.stringify(body),
     };
   } catch (err) {
     console.log(err);
