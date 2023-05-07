@@ -12,6 +12,28 @@
  */
 
 export const lambdaHandler = async (event, context) => {
+  const { httpMethod } = event;
+
+  if (httpMethod === "GET") {
+    const userInfo = handleGetUserInfo();
+    return userInfo;
+  }
+
+  if (httpMethod === "POST") {
+    const requestBody = JSON.parse(event.body);
+
+    console.log(requestBody);
+
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify({ message: "POST request processed successfully" }),
+    };
+
+    return response;
+  }
+};
+
+const handleGetUserInfo = () => {
   try {
     const body = {
       id: "123",
