@@ -41,6 +41,7 @@ export const lambdaHandler = async (event, context) => {
 const handleGetUserInfo = () => {
   try {
     const body = {
+      type: "userInfo",
       id: "123",
       name: "John Doe",
       phoneNumber: "0411111111",
