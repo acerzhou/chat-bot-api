@@ -21,8 +21,7 @@ export const lambdaHandler = async (event, context) => {
         description: "The most popular game",
         brand: "Nintedo Switch",
         price: 74.0,
-        image:
-          "https://www.jbhifi.com.au/products/nintendo-switch-the-legend-of-zeldatears-of-the-kingdom?queryID=9332e3671fb1fba6cb64cc68cc30f11a&objectID=609877",
+        image: "images/zelda.webp",
       },
       {
         id: "2",
@@ -31,8 +30,7 @@ export const lambdaHandler = async (event, context) => {
         description: "A good vinyl",
         brand: "lana del rey",
         price: 61.99,
-        image:
-          "https://www.jbhifi.com.au/products/vinyl-del-rey-lana-born-to-die-vinyl-2lp?queryID=18eeed8ec5067cabf934385eb8111f8c&objectID=294330",
+        image: "images/born-to-die.webp",
       },
       {
         id: "3",
@@ -41,7 +39,7 @@ export const lambdaHandler = async (event, context) => {
         description: "Apple Pen",
         brand: "Apple",
         price: 158,
-        image: "https://www.jbhifi.com.au/products/apple-pencil-2nd-gen",
+        image: "images/apple-pen.webp",
       },
     ];
 
