@@ -28,7 +28,7 @@ Resources:
   UserInfoFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: user-info/
+      CodeUri: user-api/
       Handler: app.lambdaHandler
       Runtime: nodejs18.x
       Architectures:
@@ -44,6 +44,48 @@ Resources:
           Properties:
             Path: /user-info
             Method: post
+  ProductFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: product-api/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /products
+            Method: get
+  CartFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: cart-api/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /cart
+            Method: get
+  OrderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: order-api/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /orders
+            Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
