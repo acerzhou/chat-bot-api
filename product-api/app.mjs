@@ -21,7 +21,7 @@ export const lambdaHandler = async (event, context) => {
         description: "The most popular game",
         brand: "Nintedo Switch",
         price: 74.0,
-        image: "images/zelda.webp",
+        image: "/images/zelda.webp",
       },
       {
         id: "2",
@@ -30,7 +30,7 @@ export const lambdaHandler = async (event, context) => {
         description: "A good vinyl",
         brand: "lana del rey",
         price: 61.99,
-        image: "images/born-to-die.webp",
+        image: "/images/born-to-die.webp",
       },
       {
         id: "3",
@@ -39,7 +39,7 @@ export const lambdaHandler = async (event, context) => {
         description: "Apple Pen",
         brand: "Apple",
         price: 158,
-        image: "images/apple-pen.webp",
+        image: "/images/apple-pen.webp",
       },
     ];
 
