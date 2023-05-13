@@ -16,7 +16,7 @@ export const lambdaHandler = async (event, context) => {
 
   if (httpMethod === "GET") {
     const cart = handleGetCart();
-    return userInfo;
+    return cart;
   }
 
   if (httpMethod === "POST") {
