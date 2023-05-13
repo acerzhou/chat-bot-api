@@ -20,22 +20,28 @@ export const lambdaHandler = async (event, context) => {
   }
 
   if (httpMethod === "POST") {
-    const requestBody = JSON.parse(event.body);
+    const userInfoUpdate = handleUpdateUserInfo(event);
 
-    console.log(requestBody);
-
-    const response = {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({ message: "POST request processed successfully" }),
-    };
-
-    return response;
+    return userInfoUpdate;
   }
+};
+
+const handleUpdateUserInfo = (event) => {
+  const requestBody = JSON.parse(event.body);
+
+  console.log(requestBody);
+
+  const response = {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({ message: "POST request processed successfully" }),
+  };
+
+  return response;
 };
 
 const handleGetUserInfo = () => {

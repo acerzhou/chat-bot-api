@@ -12,31 +12,39 @@
  */
 
 export const lambdaHandler = async (event, context) => {
+  const { httpMethod } = event;
+
+  if (httpMethod === "GET") {
+    const cart = handleGetCart();
+    return userInfo;
+  }
+
+  if (httpMethod === "POST") {
+    const updateCart = handleCartUpdate(event);
+
+    return updateCart;
+  }
+};
+
+const handleCartUpdate = (event) => {};
+const handleGetCart = () => {
   try {
-    const products = [
+    const cart = [
       {
-        id: "1",
-        sku: "",
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
+        id: 1,
+        name: "The Legend of Zelda:Tears of the Kingdom",
+        sku: "609877",
+        price: 74.0,
+        image: "/images/zelda.webp",
+        quantity: 1,
       },
       {
-        id: "2",
-        sku: "",
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
-      },
-      {
-        id: "1",
-        sku: "",
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
+        id: 2,
+        name: "Born To Die (Vinyl)",
+        sku: "294330",
+        price: 61.99,
+        image: "/images/born-to-die.webp",
+        quantity: 2,
       },
     ];
 
@@ -46,7 +54,7 @@ export const lambdaHandler = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(products),
+      body: JSON.stringify(cart),
     };
   } catch (err) {
     console.log(err);
