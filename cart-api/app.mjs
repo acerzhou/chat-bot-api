@@ -29,24 +29,31 @@ export const lambdaHandler = async (event, context) => {
 const handleCartUpdate = (event) => {};
 const handleGetCart = () => {
   try {
-    const cart = [
-      {
-        id: 1,
-        name: "The Legend of Zelda:Tears of the Kingdom",
-        sku: "609877",
-        price: 74.0,
-        image: "/images/zelda.webp",
-        quantity: 1,
-      },
-      {
-        id: 2,
-        name: "Born To Die (Vinyl)",
-        sku: "294330",
-        price: 61.99,
-        image: "/images/born-to-die.webp",
-        quantity: 2,
-      },
-    ];
+    const cart = {
+      id: 1,
+      items: [
+        {
+          id: 1,
+          name: "The Legend of Zelda:Tears of the Kingdom",
+          sku: "609877",
+          price: 74.0,
+          image: "/images/zelda.webp",
+          quantity: 1,
+        },
+        {
+          id: 2,
+          name: "Born To Die (Vinyl)",
+          sku: "294330",
+          price: 61.99,
+          image: "/images/born-to-die.webp",
+          quantity: 2,
+        },
+      ],
+      totalPrice: items.reduce(
+        (acc, item) => acc + item.price * item.quantity,
+        0
+      ),
+    };
 
     return {
       statusCode: 200,
