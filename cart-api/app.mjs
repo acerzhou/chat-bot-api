@@ -11,7 +11,7 @@
  *
  */
 
-import { AWS } from "aws-sdk";
+import AWS from "aws-sdk";
 const dynamodb = new AWS.DynamoDB();
 
 export const lambdaHandler = async (event, context) => {
