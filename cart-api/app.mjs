@@ -11,6 +11,9 @@
  *
  */
 
+const AWS = require("aws-sdk");
+const dynamodb = new AWS.DynamoDB();
+
 export const lambdaHandler = async (event, context) => {
   const { httpMethod } = event;
 
@@ -26,7 +29,27 @@ export const lambdaHandler = async (event, context) => {
   }
 };
 
-const handleCartUpdate = (event) => {};
+const handleCartUpdate = (event) => {
+  const item = {
+    id: { N: "1" },
+    name: { S: "John Doe" },
+    age: { N: "30" },
+  };
+
+  const params = {
+    TableName: "CartTable",
+    Item: item,
+  };
+
+  dynamodb.putItem(params, (err, data) => {
+    if (err) {
+      console.error("Error saving item into DynamoDB", err);
+    } else {
+      console.log("Item saved successfully");
+    }
+  });
+};
+
 const handleGetCart = () => {
   try {
     const cart = {
