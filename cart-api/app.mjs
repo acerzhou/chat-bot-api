@@ -47,16 +47,15 @@ const handleCartUpdate = (event) => {
     } else {
       console.log("Item saved successfully");
     }
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: "success save",
+    };
   });
-
-  return {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-    body: "success save",
-  };
 };
 
 const handleGetCart = () => {
