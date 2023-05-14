@@ -36,10 +36,14 @@ const handleCartUpdate = (event) => {
     age: { N: "30" },
   };
 
+  console.log("item", item);
+
   const params = {
     TableName: "CartTable",
     Item: item,
   };
+
+  console.log("params", params);
 
   dynamodb.putItem(params, (err, data) => {
     if (err) {
