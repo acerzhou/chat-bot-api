@@ -31,6 +31,7 @@ const handleGetCart = () => {
   try {
     const cart = {
       id: 1,
+      type: "cart",
       items: [
         {
           id: 1,
