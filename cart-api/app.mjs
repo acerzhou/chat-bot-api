@@ -45,7 +45,7 @@ const handleCartUpdate = async (event) => {
   console.log("params", params);
 
   const dbClient = new DynamoDBClient({
-    region: "us-west-2",
+    region: "ap-southeast-2",
   });
   const command = new PutItemCommand(params);
 
