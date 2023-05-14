@@ -48,6 +48,7 @@ const handleCartUpdate = (event) => {
   console.log("params", params);
 
   dynamodb.putItem(params, (err, data) => {
+    console.log("after put item", data, err);
     if (err) {
       console.error("Error saving item into DynamoDB", err);
     } else {
