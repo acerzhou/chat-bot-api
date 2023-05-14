@@ -86,6 +86,19 @@ Resources:
           Properties:
             Path: /orders
             Method: get
+  CartDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: CartTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: N
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
