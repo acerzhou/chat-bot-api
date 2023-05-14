@@ -11,10 +11,7 @@
  *
  */
 
-import AWS from "aws-sdk";
-AWS.config.update({ region: "ap-southeast-2" });
-
-var dynamodb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
+import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 
 export const lambdaHandler = async (event, context) => {
   const { httpMethod } = event;
@@ -25,13 +22,13 @@ export const lambdaHandler = async (event, context) => {
   }
 
   if (httpMethod === "POST") {
-    const updateCart = handleCartUpdate(event);
+    const updateCart = await handleCartUpdate(event);
 
     return updateCart;
   }
 };
 
-const handleCartUpdate = (event) => {
+const handleCartUpdate = async (event) => {
   const item = {
     id: { N: "1" },
     name: { S: "John Doe" },
@@ -47,22 +44,17 @@ const handleCartUpdate = (event) => {
 
   console.log("params", params);
 
-  dynamodb.putItem(params, (err, data) => {
-    console.log("after put item", data, err);
-    if (err) {
-      console.error("Error saving item into DynamoDB", err);
-    } else {
-      console.log("Item saved successfully");
-    }
-    return {
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-      body: "success save",
-    };
+  const dbClient = new DynamoDBClient({
+    region: "us-west-2",
   });
+  const command = new PutItemCommand(params);
+
+  try {
+    const results = await dbClient.send(command);
+    console.log(results);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const handleGetCart = () => {

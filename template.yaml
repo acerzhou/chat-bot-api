@@ -77,6 +77,9 @@ Resources:
           Properties:
             Path: /cart
             Method: post
+      Environment:
+        Variables:
+          DYNAMODB_ENDPOINT: "http://localhost:8000"
   OrderFunction:
     Type: AWS::Serverless::Function
     Properties:
