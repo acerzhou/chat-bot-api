@@ -12,7 +12,9 @@
  */
 
 import AWS from "aws-sdk";
-const dynamodb = new AWS.DynamoDB();
+AWS.config.update({ region: "ap-southeast-2" });
+
+var dynamodb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
 
 export const lambdaHandler = async (event, context) => {
   const { httpMethod } = event;
