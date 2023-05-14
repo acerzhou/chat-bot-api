@@ -52,11 +52,6 @@ const handleGetCart = () => {
       totalPrice: 0,
     };
 
-    cart.totalPrice = items.reduce(
-      (acc, item) => acc + item.price * item.quantity,
-      0
-    );
-
     return {
       statusCode: 200,
       headers: {
