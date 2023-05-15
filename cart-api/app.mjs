@@ -22,7 +22,7 @@ export const lambdaHandler = async (event, context) => {
 const handleCartUpdate = async (event) => {
   const item = {
     id: { N: "1" },
-    body: { S: JSON.stringify(event.body) },
+    body: { S: event.body },
   };
 
   const params = {
@@ -73,7 +73,7 @@ const handleGetCart = async () => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: results.body.S,
+      body: results.Item.body.S,
     };
   } catch (err) {
     console.error(err);
