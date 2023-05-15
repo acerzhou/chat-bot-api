@@ -16,6 +16,7 @@ export const lambdaHandler = async (event, context) => {
 };
 
 const handleCartUpdate = async (event) => {
+  console.log("event", JSON.stringify(event));
   const params = {
     TableName: "CartTable",
     Item: event.body,
