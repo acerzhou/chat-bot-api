@@ -1,16 +1,3 @@
-/**
- *
- * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
- * @param {Object} event - API Gateway Lambda Proxy Input Format
- *
- * Context doc: https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html
- * @param {Object} context
- *
- * Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
- * @returns {Object} object - API Gateway Lambda Proxy Output Format
- *
- */
-
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 
 export const lambdaHandler = async (event, context) => {
@@ -29,20 +16,10 @@ export const lambdaHandler = async (event, context) => {
 };
 
 const handleCartUpdate = async (event) => {
-  const item = {
-    id: { N: "1" },
-    name: { S: "John Doe" },
-    age: { N: "30" },
-  };
-
-  console.log("item", item);
-
   const params = {
     TableName: "CartTable",
-    Item: item,
+    Item: event.body,
   };
-
-  console.log("params", params);
 
   const dbClient = new DynamoDBClient({
     region: "ap-southeast-2",
