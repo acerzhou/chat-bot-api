@@ -55,7 +55,7 @@ const handleGetCart = async () => {
   const params = {
     TableName: "CartTable",
     Key: {
-      id: { S: "1" },
+      id: { N: "1" },
     },
   };
 
