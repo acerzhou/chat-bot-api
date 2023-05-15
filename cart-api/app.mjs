@@ -73,7 +73,7 @@ const handleGetCart = async () => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: JSON.parse(results.body.S),
+      body: results.body.S,
     };
   } catch (err) {
     console.error(err);
