@@ -16,10 +16,10 @@ export const lambdaHandler = async (event, context) => {
 };
 
 const handleCartUpdate = async (event) => {
-  console.log("event", JSON.stringify(event));
+  console.log("event", event.body);
   const params = {
     TableName: "CartTable",
-    Item: event.body,
+    Item: JSON.parse(event.body),
   };
 
   const dbClient = new DynamoDBClient({
