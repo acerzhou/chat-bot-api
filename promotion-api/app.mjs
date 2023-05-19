@@ -16,8 +16,8 @@ export const lambdaHandler = async (event, context) => {
     const prodmotions = [
       {
         id: "1",
-        sku: "",
-        promotionPrice: "",
+        sku: "609877",
+        promotionPrice: 20,
       },
     ];
 
