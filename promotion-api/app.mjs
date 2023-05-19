@@ -13,30 +13,11 @@
 
 export const lambdaHandler = async (event, context) => {
   try {
-    const products = [
+    const prodmotions = [
       {
         id: "1",
         sku: "",
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
-      },
-      {
-        id: "2",
-        sku: "",
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
-      },
-      {
-        id: "1",
-        sku: "",
-        name: "",
-        description: "",
-        brand: "",
-        price: "",
+        promotionPrice: "",
       },
     ];
 
@@ -46,7 +27,7 @@ export const lambdaHandler = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(products),
+      body: JSON.stringify(prodmotions),
     };
   } catch (err) {
     console.log(err);

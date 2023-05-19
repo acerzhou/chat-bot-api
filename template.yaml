@@ -94,10 +94,37 @@ Resources:
           Properties:
             Path: /orders
             Method: get
+  PromotionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: promotion-api/
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /promotions
+            Method: get
   CartDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: CartTable
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: N
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  UserDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: UserTable
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: N
