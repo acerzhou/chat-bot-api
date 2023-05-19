@@ -15,55 +15,74 @@ export const lambdaHandler = async (event, context) => {
   const { httpMethod } = event;
 
   if (httpMethod === "GET") {
-    const userInfo = handleGetUserInfo();
+    const userInfo = await handleGetUserInfo();
     return userInfo;
   }
 
   if (httpMethod === "POST") {
-    const userInfoUpdate = handleUpdateUserInfo(event);
+    const userInfoUpdate = await handleUpdateUserInfo(event);
 
     return userInfoUpdate;
   }
 };
 
-const handleUpdateUserInfo = (event) => {
-  const requestBody = JSON.parse(event.body);
-
-  console.log(requestBody);
-
-  const response = {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-    },
-
-    body: JSON.stringify({ message: "POST request processed successfully" }),
+const handleUpdateUserInfo = async (event) => {
+  const item = {
+    id: { N: "1" },
+    body: { S: event.body },
   };
 
-  return response;
-};
+  const params = {
+    TableName: "UserTable",
+    Item: item,
+  };
 
-const handleGetUserInfo = () => {
+  const dbClient = new DynamoDBClient({
+    region: "ap-southeast-2",
+  });
+  const command = new PutItemCommand(params);
+
   try {
-    const body = {
-      type: "userInfo",
-      id: "123",
-      name: "John Doe",
-      phoneNumber: "0411111111",
-      address: "test address, Melbourne, Vic, 3000",
-    };
-
+    const results = await dbClient.send(command);
+    console.log(results);
     return {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: "Cart updated",
     };
   } catch (err) {
-    console.log(err);
-    return err;
+    console.error(err);
+  }
+};
+
+const handleGetUserInfo = async () => {
+  const params = {
+    TableName: "UserTable",
+    Key: {
+      id: { N: "1" },
+    },
+  };
+
+  const dbClient = new DynamoDBClient({
+    region: "ap-southeast-2",
+  });
+  const command = new GetItemCommand(params);
+
+  try {
+    const results = await dbClient.send(command);
+    console.log(results);
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: results.Item.body.S,
+    };
+  } catch (err) {
+    console.error(err);
   }
 };
