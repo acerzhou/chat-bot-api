@@ -35,6 +35,8 @@ const handleUpdateUserInfo = async (event) => {
   });
   const command = new PutItemCommand(params);
 
+  const { name } = JSON.parse(event.body);
+
   try {
     const results = await dbClient.send(command);
     console.log(results);
@@ -44,7 +46,7 @@ const handleUpdateUserInfo = async (event) => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: `User name has been updated tol ${event.body.name}`,
+      body: `User name has been updated to ${name}`,
     };
   } catch (err) {
     console.error(err);
