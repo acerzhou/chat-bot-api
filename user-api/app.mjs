@@ -44,7 +44,7 @@ const handleUpdateUserInfo = async (event) => {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
-      body: "Cart updated",
+      body: `User name has been updated tol ${event.body.name}` `,
     };
   } catch (err) {
     console.error(err);
